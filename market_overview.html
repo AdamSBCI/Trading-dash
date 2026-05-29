@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Market Overview — Trading Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0e1117; color: #ccc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+    .header { padding: 20px 24px 0; display: flex; align-items: center; gap: 12px; }
+    .header h1 { font-size: 22px; font-weight: 800; color: #fff; }
+    .header span { font-size: 13px; color: #666; }
+
+    .ticker-tape { width: 100%; margin-top: 12px; }
+
+    .container { padding: 0 24px 40px; }
+
+    .section-title {
+      font-size: 16px; font-weight: 700; color: #fff;
+      margin: 28px 0 12px; border-left: 3px solid #2962ff;
+      padding-left: 10px;
+    }
+
+    .row { display: grid; gap: 16px; }
+    .row-2 { grid-template-columns: 2fr 1fr; }
+    .row-equal { grid-template-columns: 1fr 1fr; }
+
+    .card {
+      background: #1e2130; border-radius: 12px;
+      overflow: hidden; padding: 0;
+    }
+    .card-padded { padding: 16px; }
+
+    .tabs { display: flex; gap: 0; border-bottom: 1px solid #2a2a3a; overflow-x: auto; }
+    .tab {
+      padding: 10px 18px; font-size: 13px; font-weight: 600;
+      color: #888; cursor: pointer; white-space: nowrap;
+      border-bottom: 2px solid transparent; transition: all 0.15s;
+    }
+    .tab:hover { color: #ccc; }
+    .tab.active { color: #2962ff; border-bottom-color: #2962ff; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .quote-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    @media (max-width: 900px) {
+      .row-2 { grid-template-columns: 1fr; }
+      .row-equal { grid-template-columns: 1fr; }
+      .quote-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    hr { border: none; border-top: 1px solid #1e2130; margin: 8px 0; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📈 Market Overview</h1>
+  <span>Live data · TradingView · AI &amp; Tech Focus</span>
+</div>
+
+<!-- Ticker Tape -->
+<div class="ticker-tape">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+        {"proName":"FOREXCOM:NSXUSD","title":"Nasdaq 100"},
+        {"description":"VIX","proName":"CBOE:VIX"},
+        {"description":"NVDA","proName":"NASDAQ:NVDA"},
+        {"description":"AMD","proName":"NASDAQ:AMD"},
+        {"description":"MSFT","proName":"NASDAQ:MSFT"},
+        {"description":"GOOGL","proName":"NASDAQ:GOOGL"},
+        {"description":"META","proName":"NASDAQ:META"},
+        {"description":"TSLA","proName":"NASDAQ:TSLA"},
+        {"description":"PLTR","proName":"NASDAQ:PLTR"},
+        {"description":"IONQ","proName":"NYSE:IONQ"},
+        {"description":"TSM","proName":"NYSE:TSM"},
+        {"description":"AVGO","proName":"NASDAQ:AVGO"},
+        {"description":"RKLB","proName":"NASDAQ:RKLB"},
+        {"description":"BTC","proName":"BINANCE:BTCUSDT"},
+        {"description":"ETH","proName":"BINANCE:ETHUSDT"},
+        {"description":"SOL","proName":"BINANCE:SOLUSDT"}
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Row 1: Market Overview + Quick Stats -->
+  <div class="section-title">Major Indices &amp; Sectors</div>
+  <div class="row row-2">
+    <div class="card">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+        {
+          "colorTheme": "dark",
+          "dateRange": "1D",
+          "showChart": true,
+          "locale": "en",
+          "isTransparent": true,
+          "showSymbolLogo": true,
+          "showFloatingTooltip": true,
+          "width": "100%",
+          "height": "420",
+          "plotLineColorGrowing": "rgba(41,98,255,1)",
+          "plotLineColorFalling": "rgba(41,98,255,1)",
+          "gridLineColor": "rgba(42,46,57,0)",
+          "scaleFontColor": "rgba(134,137,147,1)",
+          "belowLineFillColorGrowing": "rgba(41,98,255,0.12)",
+          "belowLineFillColorFalling": "rgba(41,98,255,0.12)",
+          "belowLineFillColorGrowingBottom": "rgba(41,98,255,0)",
+          "belowLineFillColorFallingBottom": "rgba(41,98,255,0)",
+          "symbolActiveColor": "rgba(41,98,255,0.12)",
+          "tabs": [
+            {
+              "title": "Indices",
+              "symbols": [
+                {"s":"FOREXCOM:SPXUSD","d":"S&P 500"},
+                {"s":"FOREXCOM:NSXUSD","d":"Nasdaq 100"},
+                {"s":"FOREXCOM:DJI","d":"Dow Jones"},
+                {"s":"NASDAQ:QQQ","d":"QQQ"},
+                {"s":"AMEX:SMH","d":"Semiconductors"},
+                {"s":"AMEX:ARKK","d":"ARK Innovation"}
+              ]
+            },
+            {
+              "title": "AI & Cloud",
+              "symbols": [
+                {"s":"NASDAQ:NVDA","d":"NVIDIA"},
+                {"s":"NASDAQ:AMD","d":"AMD"},
+                {"s":"NASDAQ:MSFT","d":"Microsoft"},
+                {"s":"NASDAQ:GOOGL","d":"Alphabet"},
+                {"s":"NASDAQ:META","d":"Meta"},
+                {"s":"NASDAQ:PLTR","d":"Palantir"},
+                {"s":"NASDAQ:CRWD","d":"CrowdStrike"},
+                {"s":"NASDAQ:NET","d":"Cloudflare"}
+              ]
+            },
+            {
+              "title": "Chips",
+              "symbols": [
+                {"s":"NYSE:TSM","d":"TSMC"},
+                {"s":"NASDAQ:AVGO","d":"Broadcom"},
+                {"s":"NASDAQ:AMAT","d":"Applied Materials"},
+                {"s":"NASDAQ:QCOM","d":"Qualcomm"},
+                {"s":"NASDAQ:ARM","d":"ARM Holdings"},
+                {"s":"NASDAQ:MU","d":"Micron"},
+                {"s":"NASDAQ:SMCI","d":"Super Micro"},
+                {"s":"NASDAQ:MRVL","d":"Marvell"}
+              ]
+            },
+            {
+              "title": "Robotics & EV",
+              "symbols": [
+                {"s":"NASDAQ:TSLA","d":"Tesla"},
+                {"s":"NASDAQ:RIVN","d":"Rivian"},
+                {"s":"NYSE:NIO","d":"NIO"},
+                {"s":"NASDAQ:MBLY","d":"Mobileye"},
+                {"s":"NYSE:ROK","d":"Rockwell"},
+                {"s":"NYSE:ISRG","d":"Intuitive Surgical"},
+                {"s":"NASDAQ:PATH","d":"UiPath"},
+                {"s":"NASDAQ:RKLB","d":"Rocket Lab"}
+              ]
+            },
+            {
+              "title": "Quantum",
+              "symbols": [
+                {"s":"NYSE:IONQ","d":"IonQ"},
+                {"s":"NASDAQ:RGTI","d":"Rigetti"},
+                {"s":"NASDAQ:QUBT","d":"Quantum Computing"},
+                {"s":"NYSE:IBM","d":"IBM"}
+              ]
+            },
+            {
+              "title": "Crypto",
+              "symbols": [
+                {"s":"BINANCE:BTCUSDT","d":"Bitcoin"},
+                {"s":"BINANCE:ETHUSDT","d":"Ethereum"},
+                {"s":"BINANCE:SOLUSDT","d":"Solana"},
+                {"s":"BINANCE:AVAXUSDT","d":"Avalanche"},
+                {"s":"BINANCE:LINKUSDT","d":"Chainlink"}
+              ]
+            }
+          ]
+        }
+        </script>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="card">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {"symbol":"CBOE:VIX","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}
+          </script>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {"symbol":"NASDAQ:QQQ","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}
+          </script>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {"symbol":"AMEX:SMH","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}
+          </script>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {"symbol":"BINANCE:BTCUSDT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Heatmap -->
+  <div class="section-title">S&amp;P 500 Heatmap</div>
+  <div class="card">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+      {
+        "exchanges": [],
+        "dataSource": "SPX500",
+        "grouping": "sector",
+        "blockSize": "market_cap_basic",
+        "blockColor": "change",
+        "locale": "en",
+        "colorTheme": "dark",
+        "hasTopBar": true,
+        "isDataSetEnabled": false,
+        "isZoomEnabled": true,
+        "hasSymbolTooltip": true,
+        "isMonoSize": false,
+        "width": "100%",
+        "height": "500"
+      }
+      </script>
+    </div>
+  </div>
+
+  <!-- Sector Tabs -->
+  <div class="section-title">Your Sectors — Live Charts</div>
+  <div class="card">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab(0)">AI &amp; Cloud</div>
+      <div class="tab" onclick="switchTab(1)">Chips &amp; Semis</div>
+      <div class="tab" onclick="switchTab(2)">Robotics &amp; Automation</div>
+      <div class="tab" onclick="switchTab(3)">Quantum Computing</div>
+      <div class="tab" onclick="switchTab(4)">Self-Driving &amp; EV</div>
+      <div class="tab" onclick="switchTab(5)">Space &amp; Next-Gen</div>
+      <div class="tab" onclick="switchTab(6)">Crypto</div>
+    </div>
+
+    <!-- AI & Cloud -->
+    <div class="tab-content active" id="tab-0">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["NVIDIA","NASDAQ:NVDA|1D"],["AMD","NASDAQ:AMD|1D"],["Microsoft","NASDAQ:MSFT|1D"],["Alphabet","NASDAQ:GOOGL|1D"],["Meta","NASDAQ:META|1D"],["Palantir","NASDAQ:PLTR|1D"],["Amazon","NASDAQ:AMZN|1D"],["CrowdStrike","NASDAQ:CRWD|1D"],["Cloudflare","NASDAQ:NET|1D"],["Snowflake","NASDAQ:SNOW|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"hideDateRanges":false,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:NVDA","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:AMD","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:MSFT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:GOOGL","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:META","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:PLTR","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:AMZN","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:CRWD","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Chips -->
+    <div class="tab-content" id="tab-1">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["TSMC","NYSE:TSM|1D"],["Broadcom","NASDAQ:AVGO|1D"],["Applied Materials","NASDAQ:AMAT|1D"],["Qualcomm","NASDAQ:QCOM|1D"],["ARM Holdings","NASDAQ:ARM|1D"],["Micron","NASDAQ:MU|1D"],["Marvell","NASDAQ:MRVL|1D"],["Super Micro","NASDAQ:SMCI|1D"],["Lam Research","NASDAQ:LRCX|1D"],["KLA Corp","NASDAQ:KLAC|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:TSM","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:AVGO","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:AMAT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:QCOM","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:ARM","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:MU","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:MRVL","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:SMCI","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Robotics -->
+    <div class="tab-content" id="tab-2">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["Tesla","NASDAQ:TSLA|1D"],["Rockwell","NYSE:ROK|1D"],["Emerson","NYSE:EMR|1D"],["UiPath","NASDAQ:PATH|1D"],["Intuitive Surgical","NASDAQ:ISRG|1D"],["ABB","NYSE:ABB|1D"],["Rocket Lab","NASDAQ:RKLB|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:TSLA","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:ROK","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:PATH","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:ISRG","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Quantum -->
+    <div class="tab-content" id="tab-3">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["IonQ","NYSE:IONQ|1D"],["Rigetti","NASDAQ:RGTI|1D"],["Quantum Computing Inc","NASDAQ:QUBT|1D"],["IBM","NYSE:IBM|1D"],["Microsoft","NASDAQ:MSFT|1D"],["Alphabet","NASDAQ:GOOGL|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:IONQ","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:RGTI","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:QUBT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:IBM","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Self-Driving & EV -->
+    <div class="tab-content" id="tab-4">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["Tesla","NASDAQ:TSLA|1D"],["Rivian","NASDAQ:RIVN|1D"],["Lucid","NASDAQ:LCID|1D"],["NIO","NYSE:NIO|1D"],["XPeng","NASDAQ:XPEV|1D"],["Li Auto","NASDAQ:LI|1D"],["Mobileye","NASDAQ:MBLY|1D"],["Luminar","NASDAQ:LAZR|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:TSLA","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:RIVN","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:LCID","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:NIO","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:XPEV","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:MBLY","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Space -->
+    <div class="tab-content" id="tab-5">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["Rocket Lab","NASDAQ:RKLB|1D"],["Virgin Galactic","NYSE:SPCE|1D"],["Intuitive Machines","NASDAQ:LUNR|1D"],["AST SpaceMobile","NASDAQ:ASTS|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:RKLB","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NYSE:SPCE","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:LUNR","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"NASDAQ:ASTS","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+
+    <!-- Crypto -->
+    <div class="tab-content" id="tab-6">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {"symbols":[["Bitcoin","BINANCE:BTCUSDT|1D"],["Ethereum","BINANCE:ETHUSDT|1D"],["Solana","BINANCE:SOLUSDT|1D"],["Avalanche","BINANCE:AVAXUSDT|1D"],["Chainlink","BINANCE:LINKUSDT|1D"],["Render","BINANCE:RNDRUSDT|1D"]],"chartOnly":false,"width":"100%","height":350,"locale":"en","colorTheme":"dark","showVolume":false,"showMA":true,"scalePosition":"right","chartType":"area","lineWidth":2,"dateRanges":["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"]}
+        </script>
+      </div>
+      <div class="quote-grid">
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"BINANCE:BTCUSDT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"BINANCE:ETHUSDT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"BINANCE:SOLUSDT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"BINANCE:AVAXUSDT","width":"100%","colorTheme":"dark","isTransparent":true,"locale":"en"}</script></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crypto Screener + Economic Calendar -->
+  <div class="section-title">Crypto Market &amp; Economic Calendar</div>
+  <div class="row row-equal">
+    <div class="card">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+        {"width":"100%","height":500,"defaultColumn":"overview","screener_type":"crypto_mkt","displayCurrency":"USD","colorTheme":"dark","locale":"en","isTransparent":true}
+        </script>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+        {"colorTheme":"dark","isTransparent":true,"width":"100%","height":500,"locale":"en","importanceFilter":"0,1","countryFilter":"us"}
+        </script>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<script>
+function switchTab(index) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === index));
+  document.querySelectorAll('.tab-content').forEach((c, i) => c.classList.toggle('active', i === index));
+}
+</script>
+
+</body>
+</html>
